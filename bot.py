@@ -1,10 +1,26 @@
 import discord
 import random
+import sound_names
+import asyncio
 
 
 has_joined = False
 is_ben = False
 voice_client: discord.VoiceClient
+
+
+FFMPEG_PATH = ""
+
+
+async def play_sound(voice_channel: discord.VoiceChannel, sound_name: str):
+    global has_joined, voice_client
+    if not has_joined:
+        voice_client = await voice_channel.connect()
+        # voice_client.play(discord.FFmpegPCMAudio(executable=FFMPEG_PATH, source=sound_names.SOUND_NAMES["прив"]))
+        while voice_client.is_playing():
+            await asyncio.sleep(0.1)
+        has_joined = True
+    voice_client.play(discord.FFmpegPCMAudio(executable=FFMPEG_PATH, source=sound_names.SOUND_NAMES[sound_name] if sound_name in sound_names.SOUND_NAMES else sound_name))
 
 
 def get_nick_or_name(member: discord.Member):
@@ -61,7 +77,10 @@ def run_discord_bot():
                     res += name + "\t" + str(random.randint(0, 99)) + '\n'
                 await message.channel.send(res)
             elif user_message == "помощь":
-                await message.channel.send("Напиши /?рулетка, чтобы узнать, кто сдаст экзамен.\n/?число, чтобы всё разрулить.")
+                await message.channel.send("Напиши /?список, чтобы получить список доступных звуков.\nИли /?рулетка, чтобы узнать, кто сдаст экзамен.\n/?число, чтобы всё разрулить.")
+            elif user_message in sound_names.SOUND_NAMES:
+                is_ben = False
+                await play_sound(message.author.voice.channel, user_message)
             else:
                 await message.channel.send(f"Сам {user_message}!")
 
