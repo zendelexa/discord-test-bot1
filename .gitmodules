@@ -1,0 +1,3 @@
+[submodule "botsite"]
+	path = botsite
+	url = https://github.com/zendelexa/botsite.git
