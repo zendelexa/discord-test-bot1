@@ -30,6 +30,8 @@ def get_nick_or_name(member: discord.Member):
 
 
 def run_discord_bot():
+    sound_names.init("sounds.txt")
+
     TOKEN = open("../token.txt", 'r').readline().strip()
     PREFIX = "/?"
     

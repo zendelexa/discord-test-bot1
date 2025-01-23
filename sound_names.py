@@ -1,3 +1,7 @@
-SOUND_NAMES = {
-    "гол": "гол.mp4",
-}
+SOUND_NAMES = {}
+
+
+def init(path):
+    for line in open(path, 'r'):
+        key, value = line.strip().split()
+        SOUND_NAMES[key] = value
