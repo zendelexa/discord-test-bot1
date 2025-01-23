@@ -1,11 +1,12 @@
 SOUND_NAMES = {}
 
+SOUNDS_NAMES_DIR_PATH = "."
 SOUNDS_NAMES_FILE = "sounds.txt"
 
 SONGS = [
-    SOUNDS_NAMES_FILE + "/" + "pedro.mp3",
-    SOUNDS_NAMES_FILE + "/" + "mrbeast.mp4",
-    SOUNDS_NAMES_FILE + "/" + "crazyfrog.mp3"
+    SOUNDS_NAMES_DIR_PATH + "/" + "pedro.mp3",
+    SOUNDS_NAMES_DIR_PATH + "/" + "mrbeast.mp4",
+    SOUNDS_NAMES_DIR_PATH + "/" + "crazyfrog.mp3"
 ]
 
 
