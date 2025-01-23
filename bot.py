@@ -29,7 +29,12 @@ def get_nick_or_name(member: discord.Member):
     return member.name
 
 
+SOUNDS_NAMES_FILE = "sounds.txt"
+
+
 def run_discord_bot():
+    sound_names.load_sounds(SOUNDS_NAMES_FILE)
+
     TOKEN = open("../token.txt", 'r').readline().strip()
     PREFIX = "/?"
     
@@ -61,6 +66,7 @@ def run_discord_bot():
                 is_ben = False
                 has_joined = False
             elif user_message == "список":
+                sound_names.load_sounds(SOUNDS_NAMES_FILE)
                 await message.channel.send('\n'.join(sound_names.SOUND_NAMES.keys()))
             elif user_message == "рулетка":
                 res = ""
